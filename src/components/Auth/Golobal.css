@@ -1,0 +1,78 @@
+
+.section-register{
+    background: linear-gradient(180deg, #ffffff 0%, #f6f9fd 100%);
+}
+.register-page {
+    min-height: 100vh;
+    background: #EEF4FF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.register-logo {
+    color: #002452;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.register-card {
+    width: 450px;
+    padding: 20px;
+    border-radius: 0;
+}
+
+.register-title {
+    color: #002452;
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.form-label {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.form-control,
+.form-select {
+    height: 40px;
+    border-radius: 0;
+    font-size: 14px;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #002452;
+    box-shadow: none;
+}
+
+.form-control::placeholder {
+    color: #999;
+    font-size: 13px;
+}
+.btn{
+    background-color: #002452 ;
+    border: 1px solid #002452 ;
+    color: white ;
+    height: 40px;
+    border-radius: 0;
+}
+
+.register-btn:hover{
+    background-color: #01345f ;
+    border-color: #01345f ;
+    color: white ;
+}
+
+.card {
+    border-radius: 0 ;
+}
+
+.invalid-feedback {
+    font-size: 12px;
+}
+
+hr {
+    margin: 12px 0;
+}

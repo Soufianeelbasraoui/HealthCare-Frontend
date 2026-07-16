@@ -1,0 +1,88 @@
+
+.footer {
+  background-color: #f4f6f4;
+  border-top: 1px solid #1a1f24;
+  border-radius: 0;
+  padding-top: 2.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.footer * {
+  border-radius: 0 !important;
+}
+
+.footer-logo {
+  font-family: "Georgia", "Times New Roman", serif;
+  color: #17284d;
+  font-weight: 400;
+  font-size: 1.4rem;
+  letter-spacing: -0.3px;
+}
+
+.footer-logo i {
+  font-size: 1.1rem;
+}
+
+.footer-text {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  color: #4a5560;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  max-width: 300px;
+}
+
+.footer-title {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  color: #17284d;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  margin-bottom: 0.85rem;
+}
+
+.footer ul {
+  padding: 0;
+  margin: 0;
+}
+
+.footer li {
+  margin-bottom: 0.55rem;
+}
+
+.footer a {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  text-decoration: none;
+  color: #4a5560;
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+
+.footer a:hover {
+  color: #17284d;
+}
+
+.footer hr {
+  border: none;
+  border-top: 1px solid #d8dede;
+  opacity: 1;
+  margin: 1.5rem 0 1rem;
+}
+
+.copyright {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  color: #6b7680;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}
+
+@media (max-width: 991.98px) {
+  .footer-text {
+    max-width: 100%;
+  }
+  .footer .col-lg-3,
+  .footer .col-lg-5 {
+    margin-bottom: 1.75rem;
+  }
+}

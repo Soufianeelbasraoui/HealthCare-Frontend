@@ -1,0 +1,264 @@
+/* ==========================================================
+   Variables (shared spirit with Home.css)
+   ========================================================== */
+.about-page {
+  --ink: #1a1f24;
+  --ink-soft: #4a5560;
+  --paper: #ffffff;
+  --paper-tint: #f4f6f4;
+  --accent: #2f5233;
+  --line: #1a1f24;
+  --banner-bg: #17284d;
+  font-family: "Georgia", "Times New Roman", serif;
+  color: var(--ink);
+  overflow-x: hidden;
+}
+
+.about-page * {
+  border-radius: 0 !important;
+}
+
+.about-page p,
+.about-page li,
+.about-page button {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ==========================================================
+   Banner
+   ========================================================== */
+.about-banner {
+  background-color: var(--banner-bg);
+  border-bottom: 1px solid var(--line);
+  padding: 3.5rem 0;
+}
+
+.banner-title {
+  font-size: 2rem;
+  font-weight: 400;
+  color: #fff;
+  margin-bottom: 1.25rem;
+}
+
+.banner-text {
+  color: #cdd6e4;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  max-width: 560px;
+  margin-bottom: 1.75rem;
+}
+
+.banner-btn {
+  background-color: #3f66c9;
+  border: 1px solid #3f66c9;
+  color: #fff;
+  font-weight: 500;
+  font-size: 0.9rem;
+  padding: 0.65rem 1.4rem;
+}
+
+.banner-btn:hover {
+  background-color: transparent;
+  color: #fff;
+}
+
+.banner-image-wrapper {
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  overflow: hidden;
+  height: 220px;
+}
+
+.banner-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(10%);
+  opacity: 0.9;
+}
+
+/* ==========================================================
+   Fonctionnalités Clés
+   ========================================================== */
+.key-features-section {
+  padding: 3rem 0;
+  background-color: var(--paper);
+}
+
+.section-heading {
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 1.5rem;
+}
+
+.key-card {
+  height: 100%;
+  padding: 1.5rem;
+  border: 1px solid var(--line);
+  background-color: var(--paper);
+}
+
+.key-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line);
+  font-size: 1.05rem;
+  margin-bottom: 1.1rem;
+}
+
+.icon-navy {
+  color: #17284d;
+}
+.icon-blue {
+  color: #3f66c9;
+}
+.icon-orange {
+  color: #b5651d;
+}
+.icon-grey {
+  color: #5b6b7c;
+}
+.icon-red {
+  color: #a13b3b;
+}
+.icon-slate {
+  color: #47586b;
+}
+
+.key-card-title {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+
+.key-card-text {
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+
+.stack-section {
+  padding: 0 0 3.5rem;
+  background-color: var(--paper);
+}
+
+.stack-box {
+  border: 1px solid var(--line);
+  background-color: var(--paper-tint);
+  padding: 2.5rem;
+}
+
+.stack-title {
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 1rem;
+}
+
+.stack-text {
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.stack-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.stack-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 1.15rem;
+}
+
+.stack-list li:last-child {
+  margin-bottom: 0;
+}
+
+.stack-check {
+  color: #3f66c9;
+  font-size: 1.05rem;
+  margin-top: 0.2rem;
+  flex-shrink: 0;
+}
+
+.stack-list strong {
+  display: block;
+  color: var(--ink);
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.stack-list p {
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+.stack-video-wrapper {
+  position: relative;
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.stack-video-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.stack-play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font-size: 1.1rem;
+}
+
+.stack-play-btn:hover {
+  background-color: var(--ink);
+  color: #fff;
+}
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+@media (max-width: 991.98px) {
+  .banner-title {
+    font-size: 1.7rem;
+  }
+  .stack-box {
+    padding: 1.75rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .about-banner {
+    padding: 2.5rem 0;
+  }
+  .banner-text {
+    max-width: 100%;
+  }
+}

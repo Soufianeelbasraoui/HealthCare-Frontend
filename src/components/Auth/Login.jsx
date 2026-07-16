@@ -3,7 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate, Link } from "react-router-dom";
 import * as yup from "yup";
 import api from "../../services/api";
-
+import "./Golobal.css";
 
 const schema = yup.object({
   email: yup
@@ -33,7 +33,7 @@ function Login() {
 
       localStorage.setItem("token", response.data.token);
 
-      navigate("/patientList");
+      navigate("/dashboard");
     } catch (error) {
       alert("Email ou mot de passe incorrect");
     }
@@ -44,7 +44,7 @@ function Login() {
     <div className="d-flex justify-content-center align-items-center" style={{ minHeight: "100vh", background: "#eef3fb" }}>
       <div>
         <div className="text-center mb-4">
-          <h2 className="fw-bold text-primary">HealthCare+</h2>
+          <h2 className="fw-bold register-logo">HealthCare+</h2>
           <small className="text-muted">Medical System Portal</small>
         </div>
         <div className="card   p-4" style={{ width: "420px" }}>
@@ -73,7 +73,7 @@ function Login() {
               {errors.password?.message}
             </div>
           </div>
-          <button className="btn btn-primary w-100"type="submit">
+          <button className="btn register-btn w-100"type="submit">
             Se connecter 
           </button>
           <hr />
