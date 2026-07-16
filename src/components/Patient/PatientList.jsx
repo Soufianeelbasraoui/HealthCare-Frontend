@@ -12,19 +12,18 @@ function PatientList() {
   useEffect(() => {
     api.get("/api/patient?size=50").then((res) => {
       setPatients(res.data.content);
-    });
+  });
   }, []);
 
   const handleSearch = () => {
-    if (recherche.trim() === "") return;
     api.get("/api/patient/search?nom=" + recherche).then((res) => {
       setPatients(res.data.content);
     });
   };
 
-  const handleDelete = async (id) => {
-    await api.delete("/api/patient/" + id);
-    setPatients(patients.filter((item) => item.id !== id));
+  const handleDelete = (id) => {
+     api.delete("/api/patient/" + id);
+     setPatients(patients.filter((item) => item.id !== id));
   };
 
   return (

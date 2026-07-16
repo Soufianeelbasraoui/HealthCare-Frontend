@@ -11,6 +11,7 @@ import Dashboard from './pages/Dashboard/Dashboard'
 import Footer from './components/Footer/Footer'
 import AjouterPatient from './components/Patient/Ajouterpatient/Ajouterpatient'
 import ModifierPatient from './components/Patient/ModifierPatient/ModifierPatient'
+import ProtectedRoute from './pages/ProtectedRoute/ProtectedRoute'
 
 function App() {
 
@@ -23,7 +24,8 @@ function App() {
         <Route path='/Register' element={<Register />} />
         <Route path='/Login' element={<Login />} />
 
-        <Route path='/dashboard' element={<Dashboard />} />
+        
+        <Route path='/dashboard' element={<ProtectedRoute><Dashboard /></ProtectedRoute>  } />
         <Route path='/dashboard/patients' element={<PatientList />} />
         <Route path="/dashboard/patients/nouveau" element={<AjouterPatient />} />
         <Route path="/dashboard/patients/modifier/:id" element={<ModifierPatient />}/>

@@ -27,6 +27,7 @@ function Dashboard() {
 
     api.get("/api/medecin?page=0&size=1").then((res) => {
       setNbMedecins(res.data.totalElements);
+      
     });
 
   
