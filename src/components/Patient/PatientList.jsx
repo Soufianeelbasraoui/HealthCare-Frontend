@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
-import { FaSearch, FaPlus, FaEdit, FaTrash } from "react-icons/fa";
+import { FaSearch, FaPlus, FaEdit, FaTrash, FaEye } from "react-icons/fa";
 import api from "../../services/api";
 import Sidebar from "../../pages/Sidebar/Sidebar";
 import "./PatientList.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function PatientList() {
   const [patients, setPatients] = useState([]);
   const [recherche, setRecherche] = useState("");
+  const navigate =useNavigate();
 
   useEffect(() => {
     api.get("/api/patient?size=50").then((res) => {
@@ -20,7 +21,9 @@ function PatientList() {
       setPatients(res.data.content);
     });
   };
-
+ const handleShow = (id) => {
+    navigate(`/dashboard/patients/ShowPatinet/${id}`);
+  };
   const handleDelete = (id) => {
      api.delete("/api/patient/" + id);
      setPatients(patients.filter((item) => item.id !== id));
@@ -83,6 +86,9 @@ function PatientList() {
                   <td>{item.telephone}</td>
                   <td>{item.dateNaissance}</td>
                   <td>
+                  <button className="icon-btn icon-show" onClick={() => handleShow(item.id)}>
+                   <FaEye />
+                  </button>
                     <button className="icon-btn icon-edit">
                       <Link  to={`/dashboard/patients/modifier/${item.id}`}>
                             <FaEdit />

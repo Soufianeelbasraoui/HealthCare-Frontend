@@ -33,7 +33,7 @@ function Sidebar() {
         <NavLink to="/dashboard/patients" className={linkClass}>
           <FaUserFriends className="sidebar-icon" /> Patients
         </NavLink>
-        <NavLink to="/dashboard/medecins" className={linkClass}>
+        <NavLink to="/dashboard/medecinsList" className={linkClass}>
           <FaStethoscope className="sidebar-icon" /> Médecins
         </NavLink>
         <NavLink to="/dashboard/rendez-vous" className={linkClass}>

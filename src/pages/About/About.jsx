@@ -29,7 +29,7 @@ function About() {
                 invisible, permettant aux médecins de se concentrer sur ce qui
                 compte vraiment : le soin des patients.
               </p>
-              <button className="btn banner-btn mt-2">
+              <button className="btn1 banner-btn mt-2">
                 Découvrir nos solutions
               </button>
             </div>

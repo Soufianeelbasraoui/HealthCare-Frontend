@@ -19,10 +19,10 @@ function Home() {
                 gestion des rendez-vous.
               </p>
               <div className="d-flex flex-wrap gap-3 mt-4">
-                <button className="btn btn-primary btn-lg hero-btn-primary">
+                <button className="btn1  hero-btn-primary">
                   Découvrir l'application <FaArrowRight className="ms-2" />
                 </button>
-                <button className="btn btn-outline-primary btn-lg hero-btn-secondary">
+                <button className="btn btn-outline-primary  hero-btn-secondary">
                   <FaPlay className="me-2" /> Voir la démo
                 </button>
               </div>
@@ -114,10 +114,10 @@ function Home() {
               </div>
               <div className="col-lg-5">
                 <div className="d-flex flex-wrap justify-content-lg-end gap-3">
-                  <button className="btn btn-lg cta-btn-primary">
+                  <button className="btn1  cta-btn-primary">
                     Créer un compte
                   </button>
-                  <button className="btn btn-lg cta-btn-outline">
+                  <button className="btn1  cta-btn-outline">
                     Parler à un expert
                   </button>
                 </div>
