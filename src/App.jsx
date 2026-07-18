@@ -13,7 +13,11 @@ import AjouterPatient from './components/Patient/Ajouterpatient/Ajouterpatient'
 import ModifierPatient from './components/Patient/ModifierPatient/ModifierPatient'
 import ProtectedRoute from './pages/ProtectedRoute/ProtectedRoute'
 import ShowPatinet from './components/Patient/Consulter/ShowPatient'
-import MedecinsList from './components/medecins/medecinsListe'
+import Medecins from './components/Medecien/Medecins'
+import AjouterMedecin from './components/Medecien/AjouterMedecin/AjouterMedecin'
+import ModifierMedecin from './components/Medecien/ModifierMedecin/ModifierMedecin'
+import ConsulterMedecin from './components/Medecien/ConsulterMedecin/ConsulterMedecin'
+
 
 
 function App() {
@@ -34,7 +38,10 @@ function App() {
         <Route path="/dashboard/patients/modifier/:id" element={<ModifierPatient />}/>
         <Route path="/dashboard/patients/ShowPatinet/:id" element={<ShowPatinet/>}/>
 
-        <Route path='/dashboard/medecinsList' element={<MedecinsList/>}/>
+        <Route path='/dashboard/medecinsList' element={<Medecins/>}/>
+        <Route path='/dashboard/medecinsList/nouveau' element={<AjouterMedecin/>}/>
+        <Route path='/dashboard/medecinsList/modifier/:id' element={<ModifierMedecin/>}/>
+        <Route path='/dashboard/medecinsList/consulterMedecin/:id' element={<ConsulterMedecin/>}/>
       </Routes>
       <Footer/>
     </BrowserRouter>

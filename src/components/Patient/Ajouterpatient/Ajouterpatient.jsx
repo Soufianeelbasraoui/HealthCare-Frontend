@@ -16,25 +16,18 @@ function AjouterPatient() {
   const [dateNaissance, setDateNaissance] = useState("");
   const[password ,setPassword]=useState("");
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+ const onSubmit = async (data) => {
+  try {
+    const res = await api.post("/api/medecin", data);
 
-    try {
-      await api.post("/api/patient", {
-        username,
-        prenom,
-        password,
-        email,
-        telephone,
-        dateNaissance,
+    console.log(res.data);
 
-      });
+    navigate("/dashboard/medecins");
 
-      navigate("/dashboard/patients");
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  } catch (error) {
+    console.log(error.response?.data);
+  }
+};
 
   return (
     <div className="dashboard-layout">
