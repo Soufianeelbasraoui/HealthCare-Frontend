@@ -9,12 +9,13 @@ function Medecins() {
     const navigate = useNavigate();
 
   useEffect(() => {
-    api
-      .get("/api/medecin?page=0&size=5")
-      .then((res) => {
+    try{
+      api.get("/api/medecin?page=0&size=5").then((res) => {
          setMedecin(res.data.content);
       })
-      .catch((err) => console.log(err));
+    }catch(err){
+      console.log(err);
+    }
   }, []);
 
 

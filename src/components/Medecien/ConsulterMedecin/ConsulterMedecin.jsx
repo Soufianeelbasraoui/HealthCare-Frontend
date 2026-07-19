@@ -10,14 +10,13 @@ function ConsulterMedecin() {
   const [medecin, setMedecin] = useState(null);
 
   useEffect(() => {
-    api
-      .get(`/api/medecin/${id}`)
-      .then((res) => {
+    try{
+      api.get(`/api/medecin/${id}`).then((res) => {
         setMedecin(res.data);
       })
-      .catch((err) => {
+    }catch(err){
         console.log(err);
-      });
+     };
   }, [id]);
 
   if (!medecin) {
