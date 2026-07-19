@@ -1,0 +1,57 @@
+.dashboard-layout .container.mt-5 {
+  background-color: #fff;
+  border: 1px solid #dfe4ea;
+  border-radius: 0;
+  padding: 1.75rem;
+  max-width: 520px;
+  height: 400px;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+.dashboard-layout .container.mt-5 > div {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid #eef1f4;
+}
+
+.dashboard-layout .container.mt-5 > div:last-of-type {
+  border-bottom: none;
+}
+
+.dashboard-layout .container.mt-5 span {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 0.9rem;
+  color: #17284d;
+}
+
+.dashboard-layout .container.mt-5 span strong {
+  color: #6b7680;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.dashboard-layout .container.mt-5 a {
+  display: inline-block;
+  margin-top: 1.5rem;
+  background-color: #fff;
+  color: #4a5560;
+  border: 1px solid #dfe4ea;
+  border-radius: 0;
+  padding: 0.6rem 1.25rem;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.dashboard-layout .container.mt-5 a:hover {
+  border-color: #17284d;
+  color: #17284d;
+}
+
+.show-loading {
+  color: #6b7680;
+  font-size: 0.9rem;
+  padding: 1.5rem;
+}

@@ -3,7 +3,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import api from "../../../services/api";
 import Sidebar from "../../../pages/Sidebar/Sidebar";
 import "../Ajouterpatient/Ajouterpatient.css";
-
 function ModifierPatient() {
   const { id } = useParams();
   const navigate = useNavigate();

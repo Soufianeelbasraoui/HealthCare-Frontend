@@ -1,0 +1,72 @@
+
+.dashboard-main .card {
+  border: 1px solid #dfe4ea;
+   width: 600px
+}
+
+.dashboard-main .card h2 {
+  font-family: "Georgia", "Times New Roman", serif;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: #17284d;
+}
+
+.dashboard-main .form-label {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #17284d;
+}
+
+.dashboard-main .form-control {
+  border: 1px solid #dfe4ea;
+  border-radius: 0;
+  padding: 0.6rem 0.75rem;
+  font-size: 0.9rem;
+  color: #333c46;
+}
+
+.dashboard-main .form-control:focus {
+  border-color: #17284d;
+  box-shadow: none;
+}
+
+.dashboard-main .form-control.is-invalid {
+  border-color: #a13b3b;
+}
+
+.dashboard-main .invalid-feedback {
+  font-size: 0.8rem;
+  color: #a13b3b;
+}
+
+/* ===== Boutons ===== */
+.dashboard-main .btn {
+  border-radius: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.6rem 1.25rem;
+}
+
+.dashboard-main .btn-primary {
+  background-color: #17284d;
+  border-color: #17284d;
+}
+
+.dashboard-main .btn-primary:hover {
+  background-color: #fff;
+  color: #17284d;
+  border-color: #17284d;
+}
+
+.dashboard-main .btn-secondary {
+  background-color: #fff;
+  color: #4a5560;
+  border-color: #dfe4ea;
+}
+
+.dashboard-main .btn-secondary:hover {
+  background-color: #fff;
+  color: #17284d;
+  border-color: #17284d;
+}

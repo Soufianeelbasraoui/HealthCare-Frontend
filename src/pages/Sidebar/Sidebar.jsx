@@ -36,7 +36,7 @@ function Sidebar() {
         <NavLink to="/dashboard/medecinsList" className={linkClass}>
           <FaStethoscope className="sidebar-icon" /> Médecins
         </NavLink>
-        <NavLink to="/dashboard/rendez-vous" className={linkClass}>
+        <NavLink to="/dashboard/rendezVous" className={linkClass}>
           <FaCalendarAlt className="sidebar-icon" /> Rendez-vous
         </NavLink>
         <NavLink to="/dashboard/dossiers" className={linkClass}>

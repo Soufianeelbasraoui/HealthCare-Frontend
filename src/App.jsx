@@ -17,6 +17,9 @@ import Medecins from './components/Medecien/Medecins'
 import AjouterMedecin from './components/Medecien/AjouterMedecin/AjouterMedecin'
 import ModifierMedecin from './components/Medecien/ModifierMedecin/ModifierMedecin'
 import ConsulterMedecin from './components/Medecien/ConsulterMedecin/ConsulterMedecin'
+import RendezVous from './components/Rendez-vous/Rendez-vous'
+import AjouterRdv from './components/Rendez-vous/AjouterRdv/AjouterRdv'
+import ModifierRdv from './components/Rendez-vous/ModifierRdv/ModifierRdv'
 
 
 
@@ -33,15 +36,19 @@ function App() {
 
         
         <Route path='/dashboard' element={<ProtectedRoute><Dashboard /></ProtectedRoute>  } />
-        <Route path='/dashboard/patients' element={<PatientList />} />
-        <Route path="/dashboard/patients/nouveau" element={<AjouterPatient />} />
-        <Route path="/dashboard/patients/modifier/:id" element={<ModifierPatient />}/>
-        <Route path="/dashboard/patients/ShowPatinet/:id" element={<ShowPatinet/>}/>
+        <Route path='/dashboard/patients' element={<ProtectedRoute><PatientList /></ProtectedRoute> } />
+        <Route path="/dashboard/patients/nouveau" element={<ProtectedRoute><AjouterPatient /></ProtectedRoute>} />
+        <Route path="/dashboard/patients/modifier/:id" element={<ProtectedRoute><ModifierPatient /></ProtectedRoute>}/>
+        <Route path="/dashboard/patients/ShowPatinet/:id" element={<ProtectedRoute><ShowPatinet/></ProtectedRoute>}/>
 
         <Route path='/dashboard/medecinsList' element={<Medecins/>}/>
         <Route path='/dashboard/medecinsList/nouveau' element={<AjouterMedecin/>}/>
         <Route path='/dashboard/medecinsList/modifier/:id' element={<ModifierMedecin/>}/>
         <Route path='/dashboard/medecinsList/consulterMedecin/:id' element={<ConsulterMedecin/>}/>
+
+        <Route path='/dashboard/rendezVous' element={<RendezVous/>}/>
+        <Route path='/dashboard/rendezVous/nouveau' element={<AjouterRdv/>}/>
+        <Route path='/dashboard/rendezVous/modifier/:id' element={<ModifierRdv/>}/>
       </Routes>
       <Footer/>
     </BrowserRouter>

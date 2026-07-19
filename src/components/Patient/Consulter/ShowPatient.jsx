@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Sidebar from "../../../pages/Sidebar/Sidebar";
 import api from "../../../services/api";
+import "./ShowPatient.css";
 
 function ShowPatient() {
   const { id } = useParams();

@@ -11,6 +11,7 @@ import {
 import api from "../../services/api";
 import Sidebar from "../Sidebar/Sidebar";
 import "./Dashboard.css";
+import { Link } from "react-router-dom";
 
 function Dashboard() {
   const [nbPatients, setNbPatients] = useState(0);
@@ -27,12 +28,13 @@ function Dashboard() {
 
     api.get("/api/medecin?page=0&size=1").then((res) => {
       setNbMedecins(res.data.totalElements);
-      
+      console.log(res.data)
     });
 
   
     api.get("/api/rendezVous?page=0&size=5").then((res) => {
       setRendezVous(res.data.content);
+      console.log(res.data)
     });
   }, []);
 
@@ -134,7 +136,7 @@ function Dashboard() {
           <div className="actions-panel">
             <h2>Actions rapides</h2>
 
-            <a href="/dashboard/patients/nouveau" className="action-item">
+            <Link to="/dashboard/patients/nouveau" className="action-item">
               <span className="action-icon icon-bg-blue">
                 <FaUserPlus />
               </span>
@@ -142,9 +144,9 @@ function Dashboard() {
                 <strong>Ajouter patient</strong>
                 <p>Enregistrer un nouvel assuré</p>
               </div>
-            </a>
+            </Link>
 
-            <a href="/dashboard/rendez-vous/nouveau" className="action-item">
+            <Link to="/dashboard/rendezVous/nouveau" className="action-item">
               <span className="action-icon icon-bg-yellow">
                 <FaCalendarCheck />
               </span>
@@ -152,7 +154,7 @@ function Dashboard() {
                 <strong>Nouveau RDV</strong>
                 <p>Placer une consultation</p>
               </div>
-            </a>
+            </Link>
 
             <a href="/dashboard/dossiers/nouveau" className="action-item">
               <span className="action-icon icon-bg-navy">
@@ -164,7 +166,7 @@ function Dashboard() {
               </div>
             </a>
 
-            <a href="/dashboard/medecins/nouveau" className="action-item">
+            <Link to="/dashboard/medecinsList/nouveau" className="action-item">
               <span className="action-icon icon-bg-green">
                 <FaUserPlus />
               </span>
@@ -172,7 +174,7 @@ function Dashboard() {
                 <strong>Ajouter médecin</strong>
                 <p>Recruter un nouveau praticien</p>
               </div>
-            </a>
+            </Link>
 
             <div className="system-status">
               <span>Système à jour</span>

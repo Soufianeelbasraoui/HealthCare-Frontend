@@ -4,7 +4,7 @@ import api from "../../../services/api";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-
+import "./AjouterMedecin.css";
 const schema = yup.object({
   username: yup.string().required("Le nom est obligatoire"),
   password: yup
@@ -55,11 +55,11 @@ function AjouterMedecin() {
 
       <main className="dashboard-main">
         <div className="container mt-4">
-          <div className="card shadow p-4">
+          <div className="card  p-4">
             <h2 className="mb-4">Ajouter un médecin</h2>
 
             <form onSubmit={handleSubmit(onSubmit)}>
-              <div className="mb-3">
+              <div className="mb-2">
                 <label className="form-label">Nom d'utilisateur</label>
 
                 <input
@@ -75,7 +75,7 @@ function AjouterMedecin() {
                 </div>
               </div>
 
-              <div className="mb-3">
+              <div className="mb-2">
                 <label className="form-label">Email</label>
 
                 <input
@@ -91,7 +91,7 @@ function AjouterMedecin() {
                 </div>
               </div>
 
-              <div className="mb-3">
+              <div className="mb-2">
                 <label className="form-label">Mot de passe</label>
                 <input type="password" className={`form-control ${ errors.password ? "is-invalid" : "" }`} {...register("password")}/>
                 <div className="invalid-feedback">
@@ -99,7 +99,7 @@ function AjouterMedecin() {
                 </div>
               </div>
 
-              <div className="mb-3">
+              <div className="mb-2">
                 <label className="form-label">Spécialité</label>
 
                 <input
@@ -115,7 +115,7 @@ function AjouterMedecin() {
                 </div>
               </div>
 
-              <div className="mb-3">
+              <div className="mb-2">
                 <label className="form-label">Téléphone</label>
                 
                 <input
@@ -131,7 +131,7 @@ function AjouterMedecin() {
                 </div>
               </div>
 
-              <div className="d-flex gap-3">
+              <div className="d-flex gap-2">
                 <button type="submit" className="btn btn-primary">
                   Ajouter
                 </button>

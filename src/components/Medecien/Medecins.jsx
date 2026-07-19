@@ -3,7 +3,7 @@ import Sidebar from "../../pages/Sidebar/Sidebar";
 import api from "../../services/api";
 import { Link, useNavigate } from "react-router-dom";
 import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
-
+import "./Medecins.css";
 function Medecins() {
   const [medecin, setMedecin] = useState([]);
     const navigate = useNavigate();
@@ -40,9 +40,9 @@ function Medecins() {
 
       <main className="dashboard-main">
         <div className="table-panel">
-          <div className="d-flex gap-5">
+          <div className="d-flex gap-5  justify-content-between mb-4">
             <h5>Liste des medecins</h5>
-            <button>
+            <button className="btn-ajouter">
               
               <Link to='/dashboard/medecinsList/nouveau'>ajouter</Link>
             </button>
