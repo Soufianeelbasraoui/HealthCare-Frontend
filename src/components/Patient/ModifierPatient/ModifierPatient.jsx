@@ -14,10 +14,8 @@ function ModifierPatient() {
   const [dateNaissance, setDateNaissance] = useState("");
 
   useEffect(() => {
-  api.get(`/api/patient/${id}`)
-    .then((res) => {
+  api.get(`/api/patient/${id}`).then((res) => {
       console.log(res.data);
-
       setUsername(res.data.username);
       setPrenom(res.data.prenom);
       setEmail(res.data.email);
@@ -76,66 +74,36 @@ function ModifierPatient() {
 
             <div className="form-group">
               <label>Nom</label>
-
-              <input
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                required
-              />
+              <input type="text" value={username}onChange={(e) => setUsername(e.target.value)}  required/>
             </div>
 
             <div className="form-group">
               <label>Prénom</label>
-
-              <input
-                type="text"
-                value={prenom}
-                onChange={(e) => setPrenom(e.target.value)}
-                required
-              />
+              <input type="text" value={prenom}   onChange={(e) => setPrenom(e.target.value)}  required/>
             </div>
 
             <div className="form-group">
               <label>Email</label>
 
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
+              <input type="email" value={email}   onChange={(e) => setEmail(e.target.value)} required/>
             </div>
 
             <div className="form-group">
               <label>Téléphone</label>
 
-              <input
-                type="text"
-                value={telephone}
-                onChange={(e) => setTelephone(e.target.value)}
-                required
-              />
+              <input type="text"value={telephone} onChange={(e) => setTelephone(e.target.value)}required/>
             </div>
 
             <div className="form-group">
               <label>Date de naissance</label>
 
               <input
-                type="date"
-                value={dateNaissance}
-                onChange={(e) => setDateNaissance(e.target.value)}
-                required
-              />
+                type="date" value={dateNaissance} onChange={(e) => setDateNaissance(e.target.value)}required />
             </div>
 
             <div className="form-actions">
 
-              <button
-                type="button"
-                className="btn-annuler"
-                onClick={() => navigate("/dashboard/patients")}
-              >
+              <button  type="button" className="btn-annuler"  onClick={() => navigate("/dashboard/patients")} >
                 Annuler
               </button>
 

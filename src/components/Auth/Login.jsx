@@ -6,14 +6,8 @@ import api from "../../services/api";
 import "./Golobal.css";
 
 const schema = yup.object({
-  email: yup
-    .string()
-    .email("Email invalide")
-    .required("L'email est obligatoire"),
-
-  password: yup
-    .string()
-    .required("Le mot de passe est obligatoire"),
+  email: yup.string().email("Email invalide").required("L'email est obligatoire"),
+  password: yup.string().required("Le mot de passe est obligatoire"),
 });
 
 function Login() {

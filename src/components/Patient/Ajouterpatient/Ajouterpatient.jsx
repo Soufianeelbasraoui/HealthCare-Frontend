@@ -10,22 +10,10 @@ import api from "../../../services/api";
 const schema = yup.object({
   username: yup.string().required("Le nom est obligatoire"),
   prenom: yup.string().required("Le prénom est obligatoire"),
-  password: yup
-    .string()
-    .min(4, "Minimum 4 caractères")
-    .required("Le mot de passe est obligatoire"),
-  email: yup
-    .string()
-    .email("Email invalide")
-    .required("L'email est obligatoire"),
-  telephone: yup
-    .string()
-    .required("Le téléphone est obligatoire")
-    .min(10, "Minimum 10 chiffres")
-    .max(10, "Maximum 10 chiffres"),
-  dateNaissance: yup
-    .string()
-    .required("La date de naissance est obligatoire"),
+  password: yup.string().min(4, "Minimum 4 caractères").required("Le mot de passe est obligatoire"),
+  email: yup.string().email("Email invalide").required("L'email est obligatoire"),
+  telephone: yup.string().required("Le téléphone est obligatoire").min(10, "Minimum 10 chiffres").max(10, "Maximum 10 chiffres"),
+  dateNaissance: yup.string().required("La date de naissance est obligatoire"),
 });
 
 function AjouterPatient() {
@@ -42,11 +30,8 @@ function AjouterPatient() {
   const onSubmit = async (data) => {
     try {
       const res = await api.post("/api/patient", data);
-
       console.log(res.data);
-
       alert("Patient ajouté avec succès");
-
       navigate("/dashboard/patients");
     } catch (error) {
       console.log(error.response?.data);

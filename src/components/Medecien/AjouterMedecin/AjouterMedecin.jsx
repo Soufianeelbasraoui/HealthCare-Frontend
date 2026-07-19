@@ -7,20 +7,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import "./AjouterMedecin.css";
 const schema = yup.object({
   username: yup.string().required("Le nom est obligatoire"),
-  password: yup
-    .string()
-    .min(4, "Minimum 4 caractères")
-    .required("Mot de passe obligatoire"),
-  email: yup
-    .string()
-    .email("Email invalide")
-    .required("Email obligatoire"),
+  password: yup.string().min(4, "Minimum 4 caractères").required("Mot de passe obligatoire"),
+  email: yup.string().email("Email invalide").required("Email obligatoire"),
   specialite: yup.string().required("Spécialité obligatoire"),
-  telephone: yup
-    .string()
-    .min(8, "Minimum 8 chiffres")
-    .max(8, "Maximum 8 chiffres")
-    .required("Téléphone obligatoire"),
+  telephone: yup.string().min(8, "Minimum 8 chiffres").max(8, "Maximum 8 chiffres").required("Téléphone obligatoire"),
 });
 
 function AjouterMedecin() {
@@ -37,11 +27,8 @@ function AjouterMedecin() {
   const onSubmit = async (data) => {
     try {
       const res = await api.post("/api/medecin", data);
-
       console.log(res.data);
-
       alert("Médecin ajouté avec succès");
-
       navigate("/dashboard/medecinsList");
     } catch (error) {
       console.log(error);
@@ -61,74 +48,51 @@ function AjouterMedecin() {
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="mb-2">
                 <label className="form-label">Nom d'utilisateur</label>
+                <input type="text"  {...register("username")} />
+                <small className="text-danger">
+                {errors.username?.message}
+                </small>
 
-                <input
-                  type="text"
-                  className={`form-control ${
-                    errors.username ? "is-invalid" : ""
-                  }`}
-                  {...register("username")}
-                />
-
-                <div className="invalid-feedback">
-                  {errors.username?.message}
-                </div>
+      
               </div>
 
               <div className="mb-2">
                 <label className="form-label">Email</label>
 
-                <input
-                  type="email"
-                  className={`form-control ${
-                    errors.email ? "is-invalid" : ""
-                  }`}
-                  {...register("email")}
-                />
-
-                <div className="invalid-feedback">
-                  {errors.email?.message}
-                </div>
+                <input type="email"{...register("email")}/>
+                  <small className="text-danger">
+                 {errors.email?.message}
+                  </small>
               </div>
 
               <div className="mb-2">
                 <label className="form-label">Mot de passe</label>
-                <input type="password" className={`form-control ${ errors.password ? "is-invalid" : "" }`} {...register("password")}/>
+                <input type="password"{...register("password")}/>
                 <div className="invalid-feedback">
-                  {errors.password?.message}
+                  
                 </div>
+                <small className="text-danger">
+                {errors.password?.message}
+                </small>
               </div>
 
               <div className="mb-2">
                 <label className="form-label">Spécialité</label>
 
-                <input
-                  type="text"
-                  className={`form-control ${
-                    errors.specialite ? "is-invalid" : ""
-                  }`}
-                  {...register("specialite")}
-                />
-
-                <div className="invalid-feedback">
+                <input  type="text" {...register("specialite")} />
+                  <small className="text-danger">
                   {errors.specialite?.message}
-                </div>
+                  </small>
+               
               </div>
 
               <div className="mb-2">
                 <label className="form-label">Téléphone</label>
                 
-                <input
-                  type="text"
-                    className={`form-control ${
-                    errors.telephone ? "is-invalid" : ""
-                  }`}
-                  {...register("telephone")}
-                />
-
-                <div className="invalid-feedback">
-                  {errors.telephone?.message}
-                </div>
+                <input type="text" {...register("telephone")}/>
+                <small className="text-danger">
+                 {errors.telephone?.message}
+                 </small>
               </div>
 
               <div className="d-flex gap-2">

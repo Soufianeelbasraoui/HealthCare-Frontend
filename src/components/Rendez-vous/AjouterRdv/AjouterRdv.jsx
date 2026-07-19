@@ -7,23 +7,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 const schema = yup.object({
-  dateRendezVous: yup
-    .string()
-    .required("La date du rendez-vous est obligatoire"),
-
-  statut: yup
-    .string()
-    .required("Le statut est obligatoire"),
-
-  patientId: yup
-    .number()
-    .typeError("Patient obligatoire")
-    .required("Patient obligatoire"),
-
-  medecinId: yup
-    .number()
-    .typeError("Médecin obligatoire")
-    .required("Médecin obligatoire"),
+  dateRendezVous: yup.string().required("La date du rendez-vous est obligatoire"),
+  statut: yup .string().required("Le statut est obligatoire"),
+  patientId: yup.number().typeError("Patient obligatoire").required("Patient obligatoire"),
+  medecinId: yup.number().typeError("Médecin obligatoire").required("Médecin obligatoire"),
 });
 
 function AjouterRdv() {
@@ -42,15 +29,12 @@ function AjouterRdv() {
 
   useEffect(() => {
     api
-      .get("/api/patient?page=0&size=100")
-      .then((res) => {
+      .get("/api/patient?page=0&size=100").then((res) => {
         setPatients(res.data.content);
       })
       .catch((err) => console.log(err));
 
-    api
-      .get("/api/medecin?page=0&size=100")
-      .then((res) => {
+    api .get("/api/medecin?page=0&size=100") .then((res) => {
         setMedecins(res.data.content);
       })
       .catch((err) => console.log(err));
@@ -82,43 +66,33 @@ function AjouterRdv() {
               <div className="mb-3">
                 <label className="form-label">Date du rendez-vous</label>
 
-                <input
-                  type="date"
-                  className={`form-control ${ errors.dateRendezVous ? "is-invalid" : ""}`}
-                  {...register("dateRendezVous")}
-                />
-
-                <div className="invalid-feedback">
-                  {errors.dateRendezVous?.message}
-                </div>
+                <input type="date" {...register("dateRendezVous")}/>
+                  <small className="text-danger">
+                      {errors.dateRendezVous?.message}
+                   </small>
+               
               </div>
 
         
               <div className="mb-3">
                 <label className="form-label">Statut</label>
-                <select
-                  className={`form-control ${  errors.statut ? "is-invalid" : ""}`}
-                  {...register("statut")}
-                >
+                <select {...register("statut")}>
                   <option value="">Choisir...</option>
                   <option value="PLANIFIE">PLANIFIE</option>
                   <option value="CONFIRME">CONFIRME</option>
                   <option value="ANNULE">ANNULE</option>
                   <option value="TERMINE">TERMINE</option>
                 </select>
-
-                <div className="invalid-feedback">
-                  {errors.statut?.message}
-                </div>
+                    <small className="text-danger">
+                     {errors.statut?.message}
+                     </small>
+              
               </div>
 
               <div className="mb-3">
                 <label className="form-label">Patient</label>
 
-                <select
-                  className={`form-control ${ errors.patientId ? "is-invalid" : "" }`}
-                  {...register("patientId")}
-                >
+                <select {...register("patientId")} >
                   <option value="">Choisir un patient</option>
                   {patients.map((patient) => (
                     <option key={patient.id} value={patient.id}>
@@ -126,18 +100,17 @@ function AjouterRdv() {
                     </option>
                   ))}
                 </select>
-
+               <small className="text-danger">
+                   {errors.patientId?.message}
+              </small>
                 <div className="invalid-feedback">
-                  {errors.patientId?.message}
                 </div>
               </div>
 
               <div className="mb-3">
                 <label className="form-label">Médecin</label>
 
-                <select
-                  className={`form-control ${errors.medecinId ? "is-invalid" : "" }`}
-                  {...register("medecinId")}>
+                <select  {...register("medecinId")}>
                   <option value="">Choisir un médecin</option>
 
                   {medecins.map((medecin) => (
@@ -146,9 +119,10 @@ function AjouterRdv() {
                     </option>
                   ))}
                 </select>
-
+                <small className="text-danger">
+                 {errors.medecinId?.message}
+                 </small>
                 <div className="invalid-feedback">
-                  {errors.medecinId?.message}
                 </div>
               </div>
 

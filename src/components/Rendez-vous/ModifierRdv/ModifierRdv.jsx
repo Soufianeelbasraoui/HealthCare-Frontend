@@ -15,13 +15,16 @@ function ModifierRdv() {
   } = useForm();
 
   useEffect(() => {
-    api.get(`/api/rendezVous/${id}`).then((res) => {
+    try{
+       api.get(`/api/rendezVous/${id}`).then((res) => {
         setValue("dateRendezVous", res.data.dateRendezVous);
         setValue("statut", res.data.statut);
         setValue("patientId", res.data.patientId);
         setValue("medecinId", res.data.medecinId);
       })
-      .catch((err) => console.log(err));
+    }catch(err){
+      console.log("errour de fetch api:",err)
+    };
   }, [id]);
 
   const onSubmit = async (data) => {
@@ -48,16 +51,12 @@ function ModifierRdv() {
 
             <div className="mb-2">
               <label>Date</label>
-              <input type="date" className="form-control"
-                {...register("dateRendezVous")}
-              />
+              <input type="date" className="form-control"  {...register("dateRendezVous")}/>
             </div>
 
             <div className="mb-2">
               <label>Statut</label>
-              <select className="form-control"
-                {...register("statut")}
-              >
+              <select className="form-control"{...register("statut")}>
                 <option value="PLANIFIE">PLANIFIE</option>
                 <option value="CONFIRME">CONFIRME</option>
                 <option value="ANNULE">ANNULE</option>
@@ -67,18 +66,12 @@ function ModifierRdv() {
 
             <div className="mb-2">
               <label>Patient</label>
-              <input
-                className="form-control"
-                {...register("patientId")}
-              />
+              <input className="form-control" {...register("patientId")}/>
             </div>
 
             <div className="mb-2">
               <label>Médecin</label>
-              <input
-                className="form-control"
-                {...register("medecinId")}
-              />
+              <input className="form-control" {...register("medecinId")}/>
             </div>
 
             <button className="btn btn-primary">

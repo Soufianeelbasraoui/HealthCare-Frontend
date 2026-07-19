@@ -8,10 +8,7 @@ import "./Golobal.css";
 const schema = yup.object({
   username: yup.string().required("Nom d'utilisateur obligatoire"),
   email: yup.string().email("Email invalide").required("Email obligatoire"),
-  password: yup
-    .string()
-    .min(4, "Minimum 4 caractères")
-    .required("Mot de passe obligatoire"),
+  password: yup.string().min(4, "Minimum 4 caractères").required("Mot de passe obligatoire"),
   role: yup.string().required("Choisissez un rôle"),
 });
 
