@@ -36,7 +36,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Layout pour les pages publiques : Header et Footer inclus */}
+       
         <Route element={<PublicLayout />}>
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About />} />
@@ -44,7 +44,6 @@ function App() {
           <Route path='/login' element={<Login />} />
         </Route>
 
-        {/* Pages sans Header ni Footer (Dashboard, Unauthorized) */}
         <Route path='/unauthorized' element={<Unauthorized/>}/>
         <Route path='/dashboard' element={<ProtectedRoute><Dashboard /></ProtectedRoute>  } />
         <Route path='/dashboard/patients' element={<ProtectedRoute roles={["ADMIN"]}><PatientList /></ProtectedRoute> } />
