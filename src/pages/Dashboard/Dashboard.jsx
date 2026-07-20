@@ -17,6 +17,7 @@ import { getUser } from "../../services/authService";
 function Dashboard() {
   const [nbPatients, setNbPatients] = useState(0);
   const [nbMedecins, setNbMedecins] = useState(0);
+  const [nbRendezVous, setNbRendezVous] = useState(0);
   const [rendezVous, setRendezVous] = useState([]);
   const user = JSON.parse(localStorage.getItem("user"));
  
@@ -36,6 +37,7 @@ function Dashboard() {
   
     api.get("/api/rendezVous?page=0&size=5").then((res) => {
       setRendezVous(res.data.content);
+      setNbRendezVous(res.data.totalElements || res.data.content?.length || 0);
       console.log(res.data)
     });
   }, []);
@@ -82,7 +84,7 @@ function Dashboard() {
           <div className="stat-card stat-border-orange">
             <div className="stat-card-text">
               <span>RDV aujourd'hui</span>
-              <strong>{rendezVous.length}</strong>
+              <strong>{nbRendezVous}</strong>
             </div>
             <div className="stat-icon icon-bg-orange">
               <FaCalendarAlt />
@@ -100,7 +102,6 @@ function Dashboard() {
           </div>
         </section>
 
-        {/* ===== RENDEZ-VOUS + ACTIONS ===== */}
         <section className="dashboard-content-grid">
           <div className="rdv-panel">
             <div className="panel-header">

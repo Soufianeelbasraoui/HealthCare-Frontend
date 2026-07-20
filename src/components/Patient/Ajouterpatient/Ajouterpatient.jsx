@@ -18,6 +18,7 @@ const schema = yup.object({
 
 function AjouterPatient() {
   const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("user"));
 
   const {
     register,
@@ -49,8 +50,8 @@ function AjouterPatient() {
 
           <div className="dashboard-profile">
             <div className="profile-text">
-              <strong>Dr. Jean Dupont</strong>
-              <span>CARDIOLOGUE</span>
+              <strong>{user?.username}</strong>
+              <span>{user?.role}</span>
             </div>
 
             <div className="profile-avatar"></div>

@@ -1,8 +1,10 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate, Link } from "react-router-dom";
 import * as yup from "yup";
 import api from "../../services/api";
+import { isAuthenticated } from "../../services/authService";
 import "./Golobal.css";
 
 const schema = yup.object({
@@ -13,6 +15,20 @@ const schema = yup.object({
 function Login() {
   const navigate = useNavigate();
 
+useEffect(() => {
+  if (isAuthenticated()) {
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    if (user?.role === "ADMIN") {
+      navigate("/dashboard");
+    } else if (user?.role === "MEDECIN") {
+      navigate("/dashboard/rendezVous");
+    } else if (user?.role === "PATIENT") {
+      navigate("/dashboard/rendezVous");
+    }
+  }
+}, [navigate]);
+
   const {
     register,
     handleSubmit,
@@ -21,24 +37,33 @@ function Login() {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = async (data) => {
-    try {
-      const response = await api.post("/auth/login", data);
+ const onSubmit = async (data) => {
+  try {
+    const response = await api.post("/auth/login", data);
+    localStorage.setItem("token", response.data.token);
 
-      localStorage.setItem("token", response.data.token);
-      localStorage.setItem(
-        "user",
-        JSON.stringify({
-          username:response.data.username,
-          role:response.data.role,
-        })
-      )
+    localStorage.setItem(
+      "user",
+      JSON.stringify({
+        username: response.data.username,
+        role: response.data.role,
+      })
+    );
 
+    if (response.data.role === "ADMIN") {
       navigate("/dashboard");
-    } catch (error) {
-      alert("Email ou mot de passe incorrect");
+    } else if (response.data.role === "MEDECIN") {
+      navigate("/dashboard/rendezVous");
+    } else if (response.data.role === "PATIENT") {
+      navigate("/dashboard/rendezVous");
+    } else {
+      navigate("/");
     }
-  };
+
+  } catch (error) {
+    alert("Email ou mot de passe incorrect");
+  }
+};
 
   return (
     

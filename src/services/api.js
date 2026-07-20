@@ -37,9 +37,9 @@ api.interceptors.response.use(
            window.location.href="/login";
             break;
         case 403:
-          alert("Accès refusé.") 
+          alert("Accès refusé.");
            console.error("Accès refusé (403) : droits insuffisants.");
-           window.location.href = "/login";
+           window.location.href = "/unauthorized";
           break;
         case 404:
           alert("Ressource introuvable.");

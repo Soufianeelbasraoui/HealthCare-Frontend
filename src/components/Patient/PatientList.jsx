@@ -30,9 +30,13 @@ function PatientList() {
  const handleShow = (id) => {
     navigate(`/dashboard/patients/ShowPatinet/${id}`);
   };
-  const handleDelete = (id) => {
-     api.delete("/api/patient/" + id);
-     setPatients(patients.filter((item) => item.id !== id));
+  const handleDelete = async (id) => {
+    try {
+      await api.delete("/api/patient/" + id);
+      setPatients(patients.filter((item) => item.id !== id));
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -53,9 +57,9 @@ function PatientList() {
 
         <div className="patients-header">
           <h2>Liste des Patients</h2>
-          <button className="btn-ajouter">
-            <FaPlus /> <Link to="/dashboard/patients/nouveau" >Ajouter patient</Link>
-          </button>
+          <Link to="/dashboard/patients/nouveau" className="btn-ajouter">
+            <FaPlus /> Ajouter patient
+          </Link>
         </div>
 
         <div className="search-bar">
@@ -95,12 +99,9 @@ function PatientList() {
                   <button className="icon-btn icon-show" onClick={() => handleShow(item.id)}>
                    <FaEye />
                   </button>
-                    <button className="icon-btn icon-edit">
-                      <Link  to={`/dashboard/patients/modifier/${item.id}`}>
-                            <FaEdit />
-                      </Link>
-                     
-                    </button>
+                    <Link to={`/dashboard/patients/modifier/${item.id}`} className="icon-btn icon-edit" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <FaEdit />
+                    </Link>
                     <button
                       className="icon-btn icon-delete"
                       onClick={() => handleDelete(item.id)}

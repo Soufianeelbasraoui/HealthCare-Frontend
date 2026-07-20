@@ -10,7 +10,7 @@ const schema = yup.object({
   password: yup.string().min(4, "Minimum 4 caractères").required("Mot de passe obligatoire"),
   email: yup.string().email("Email invalide").required("Email obligatoire"),
   specialite: yup.string().required("Spécialité obligatoire"),
-  telephone: yup.string().min(8, "Minimum 8 chiffres").max(8, "Maximum 8 chiffres").required("Téléphone obligatoire"),
+  telephone: yup.string().min(10, "Minimum 10 chiffres").max(10, "Maximum 10 chiffres").required("Téléphone obligatoire"),
 });
 
 function AjouterMedecin() {

@@ -21,6 +21,7 @@ import RendezVous from './components/Rendez-vous/Rendez-vous'
 import AjouterRdv from './components/Rendez-vous/AjouterRdv/AjouterRdv'
 import ModifierRdv from './components/Rendez-vous/ModifierRdv/ModifierRdv'
 import Unauthorized from './pages/Unauthorized/Unauthorized'
+import NotFound from './pages/NotFound/NotFound'
 
 function PublicLayout() {
   return (
@@ -42,10 +43,12 @@ function App() {
           <Route path='/about' element={<About />} />
           <Route path='/register' element={<Register />} />
           <Route path='/login' element={<Login />} />
+          <Route path='*' element={<NotFound />} />
+          <Route path='/unauthorized' element={<Unauthorized/>}/>
         </Route>
 
-        <Route path='/unauthorized' element={<Unauthorized/>}/>
-        <Route path='/dashboard' element={<ProtectedRoute><Dashboard /></ProtectedRoute>  } />
+        
+        <Route path='/dashboard' element={<ProtectedRoute roles={["ADMIN"]}><Dashboard /></ProtectedRoute>  } />
         <Route path='/dashboard/patients' element={<ProtectedRoute roles={["ADMIN"]}><PatientList /></ProtectedRoute> } />
         <Route path="/dashboard/patients/nouveau" element={<ProtectedRoute roles={["ADMIN"]}><AjouterPatient /></ProtectedRoute>} />
         <Route path="/dashboard/patients/modifier/:id" element={<ProtectedRoute roles={["ADMIN","PATIENT"]}><ModifierPatient /></ProtectedRoute>}/>

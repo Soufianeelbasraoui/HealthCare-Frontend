@@ -9,31 +9,24 @@ function RendezVous(){
     const[rendezVous,setRendezVous]=useState([]);
     const navigate=useNavigate();
 
-
     useEffect(()=>{
-        try{
-           api.get("/api/rendezVous?page=0&size=5").then((res) => {
-             setRendezVous(res.data.content);
-             console.log(res.data.content);
-           });
-        }catch (error){
-            console.log(error);
-        }
-        console.log(rendezVous)
-
+        api.get("/api/rendezVous?page=0&size=50").then((res) => {
+          setRendezVous(res.data.content);
+        }).catch((error) => {
+          console.log(error);
+        });
     },[])
 
 const handleEdit = (id) => {
   navigate(`/dashboard/rendezVous/modifier/${id}`);
 };
-const handleDelete=(id)=>{
-    try{
-    api.delete(`/api/rendezVous/${id}`);
-    setRendezVous(rendezVous.filter((item)=>item.id!==id)); 
-    }catch (error){
-        console.log(error)
+const handleDelete = async (id)=>{
+    try {
+      await api.delete(`/api/rendezVous/${id}`);
+      setRendezVous(rendezVous.filter((item)=>item.id!==id)); 
+    } catch (error){
+      console.log(error);
     }
-    
 }
     return(
         <div className="dashboard-layout">
@@ -41,30 +34,29 @@ const handleDelete=(id)=>{
             <main className="dashboard-main ">
             <div className="container mt-4 ">
                <div className="d-flex justify-content-between mb-4">
-                <h2>list des RendezVous</h2>
-                <button className="btn-ajouter"><Link to="/dashboard/rendezVous/nouveau">Creer Rendez-Vous</Link></button>
+                <h2>Liste des Rendez-Vous</h2>
+                <Link to="/dashboard/rendezVous/nouveau" className="btn-ajouter">Créer Rendez-Vous</Link>
                </div>
                <div>
                 <table className="table">
                     <thead>
                         <tr>
                             <th>Id</th> 
-                            <th> dateRendezVous</th>
-                            <th>Patient</th>
-                            <th>Medecin</th>
-                            <th>Status</th>
+                            <th>Date Rendez-Vous</th>
+                            <th>Patient ID</th>
+                            <th>Médecin ID</th>
+                            <th>Statut</th>
                             <th>Action</th>
-                           
                         </tr>
                     </thead>
                     <tbody>
                         {rendezVous.map((item,index)=>(
                             <tr key={index} >
                                 <td>{item.id}</td>
-                                <td>{item. dateRendezVous}</td>
+                                <td>{item.dateRendezVous}</td>
                                 <td>{item.patientId}</td>
                                 <td>{item.medecinId}</td>
-                                <td>{item. statut}</td>
+                                <td>{item.statut}</td>
                                 <td>
                                     <button className="icon-btn icon-show" onClick={()=>handleEdit(item.id)}><FaEdit/></button>
                                     <button className="icon-btn icon-delete" onClick={()=>handleDelete(item.id)}><FaTrash /> </button>

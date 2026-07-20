@@ -9,55 +9,50 @@ function Medecins() {
     const navigate = useNavigate();
 
   useEffect(() => {
-    try{
-      api.get("/api/medecin?page=0&size=5").then((res) => {
-         setMedecin(res.data.content);
+    api.get("/api/medecin?page=0&size=50")
+      .then((res) => {
+        setMedecin(res.data.content);
       })
-    }catch(err){
-      console.log(err);
-    }
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
+  const handleShow = (id) => {
+    navigate(`/dashboard/medecinsList/consulterMedecin/${id}`);
+  };
 
-  const handleShow=(id)=>{
-    navigate(`/dashboard/medecinsList/consulterMedecin/${id}`)
-  }
-  const handleDelete=(id)=>{
-    try{
-    api.delete(`/api/medecin/${id}`)
-    setMedecin(medecin.filter((item)=>item.id!==id));
-    alert("comfirmer delet")
-    }catch (error){
+  const handleDelete = async (id) => {
+    try {
+      await api.delete(`/api/medecin/${id}`);
+      setMedecin(medecin.filter((item) => item.id !== id));
+    } catch (error) {
       console.log(error);
-      alert("errro de delet")
+      alert("Erreur lors de la suppression");
     }
-
-  }
+  };
 
   return (
     <div className="dashboard-layout">
-    
       <Sidebar />
 
       <main className="dashboard-main">
         <div className="table-panel">
-          <div className="d-flex gap-5  justify-content-between mb-4">
-            <h5>Liste des medecins</h5>
-            <button className="btn-ajouter">
-              
-              <Link to='/dashboard/medecinsList/nouveau'>ajouter</Link>
-            </button>
-
+          <div className="d-flex gap-5 justify-content-between mb-4">
+            <h5>Liste des médecins</h5>
+            <Link to="/dashboard/medecinsList/nouveau" className="btn-ajouter">
+              Ajouter
+            </Link>
           </div>
-          <table  className="table">
+          <table className="table">
             <thead>
               <tr>
                 <th>Id</th>
                 <th>Username</th>
                 <th>Spécialité</th>
-                <th>soufiane</th>
+                <th>Email</th>
                 <th>Téléphone</th>
-                  <th>Action</th>
+                <th>Action</th>
               </tr>
             </thead>
 
@@ -70,9 +65,15 @@ function Medecins() {
                   <td>{item.email}</td>
                   <td>{item.telephone}</td>
                   <td>
-                  <button className="icon-btn icon-show" onClick={() => handleShow(item.id)}><FaEye /></button>
-                  <button  className="icon-btn icon-edit"><Link to={`/dashboard/medecinsList/modifier/${item.id}`} >   <FaEdit/></Link>  </button>
-                  <button   className="icon-btn icon-delete" onClick={()=>handleDelete(item.id)}> <FaTrash /> </button>
+                    <button className="icon-btn icon-show" onClick={() => handleShow(item.id)}>
+                      <FaEye />
+                    </button>
+                    <Link to={`/dashboard/medecinsList/modifier/${item.id}`} className="icon-btn icon-edit" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <FaEdit />
+                    </Link>
+                    <button className="icon-btn icon-delete" onClick={() => handleDelete(item.id)}>
+                      <FaTrash />
+                    </button>
                   </td>
                 </tr>
               ))}
