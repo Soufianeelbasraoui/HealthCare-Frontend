@@ -12,6 +12,7 @@ function ModifierPatient() {
   const [email, setEmail] = useState("");
   const [telephone, setTelephone] = useState("");
   const [dateNaissance, setDateNaissance] = useState("");
+  const user = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
   api.get(`/api/patient/${id}`).then((res) => {
@@ -50,17 +51,15 @@ function ModifierPatient() {
       <Sidebar />
 
       <main className="dashboard-main">
-
-        <header className="dashboard-topbar">
-          <h1 className="dashboard-title">Patients</h1>
-
+                <header className="dashboard-topbar">
+          <h1 className="dashboard-title">Tableau de bord</h1>
           <div className="dashboard-profile">
             <div className="profile-text">
-              <strong>Dr. Jean Dupont</strong>
-              <span>ADMIN</span>
+              
+              <strong>{user?.username}</strong>
+              <span>{user?.role}</span>
             </div>
-
-            <div className="profile-avatar"></div>
+        
           </div>
         </header>
 

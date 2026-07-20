@@ -26,6 +26,13 @@ function Login() {
       const response = await api.post("/auth/login", data);
 
       localStorage.setItem("token", response.data.token);
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          username:response.data.username,
+          role:response.data.role,
+        })
+      )
 
       navigate("/dashboard");
     } catch (error) {

@@ -4,11 +4,17 @@ import api from "../../services/api";
 import Sidebar from "../../pages/Sidebar/Sidebar";
 import "./PatientList.css";
 import { Link, useNavigate } from "react-router-dom";
+import { getUser } from "../../services/authService";
+
 
 function PatientList() {
   const [patients, setPatients] = useState([]);
   const [recherche, setRecherche] = useState("");
   const navigate =useNavigate();
+  
+  const user=JSON.parse(localStorage.getItem("user"));
+  console.log(user)
+  
 
   useEffect(() => {
     api.get("/api/patient?size=50").then((res) => {
@@ -38,10 +44,10 @@ function PatientList() {
           <h1 className="dashboard-title">Patients</h1>
           <div className="dashboard-profile">
             <div className="profile-text">
-              <strong>Dr. Jean Dupont</strong>
-              <span>CARDIOLOGUE</span>
+              <strong>{user?.username}</strong>
+              <span>{user?.role}</span>
             </div>
-            <div className="profile-avatar" />
+           
           </div>
         </header>
 

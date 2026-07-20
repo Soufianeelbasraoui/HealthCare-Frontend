@@ -8,12 +8,13 @@ import {
   FaSignOutAlt,
 } from "react-icons/fa";
 import "./Sidebar.css";
+import { logout } from "../../services/authService";
 
 function Sidebar() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    logout();
     navigate("/login");
   };
 

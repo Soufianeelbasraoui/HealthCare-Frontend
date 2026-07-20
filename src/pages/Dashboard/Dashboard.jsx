@@ -12,12 +12,14 @@ import api from "../../services/api";
 import Sidebar from "../Sidebar/Sidebar";
 import "./Dashboard.css";
 import { Link } from "react-router-dom";
+import { getUser } from "../../services/authService";
 
 function Dashboard() {
   const [nbPatients, setNbPatients] = useState(0);
   const [nbMedecins, setNbMedecins] = useState(0);
   const [rendezVous, setRendezVous] = useState([]);
-
+  const user = JSON.parse(localStorage.getItem("user"));
+ 
   useEffect(() => {
    
     api.get("/api/patient?page=0&size=1").then((res) => {
@@ -47,10 +49,11 @@ function Dashboard() {
           <h1 className="dashboard-title">Tableau de bord</h1>
           <div className="dashboard-profile">
             <div className="profile-text">
-              <strong>Dr. Jean Dupont</strong>
-              <span>ADMINISTRATEUR</span>
+              
+              <strong>{user?.username}</strong>
+              <span>{user?.role}</span>
             </div>
-            <div className="profile-avatar" />
+        
           </div>
         </header>
 
@@ -102,9 +105,9 @@ function Dashboard() {
           <div className="rdv-panel">
             <div className="panel-header">
               <h2>Derniers Rendez-vous</h2>
-              <a href="/dashboard/rendez-vous" className="panel-link">
+              <Link to="/dashboard/rendezVous" className="panel-link">
                 Voir tout
-              </a>
+              </Link>
             </div>
 
             <table className="rdv-table">
@@ -156,7 +159,7 @@ function Dashboard() {
               </div>
             </Link>
 
-            <a href="/dashboard/dossiers/nouveau" className="action-item">
+            <Link to="/dashboard/dossiers/nouveau" className="action-item">
               <span className="action-icon icon-bg-navy">
                 <FaFileMedicalAlt />
               </span>
@@ -164,7 +167,7 @@ function Dashboard() {
                 <strong>Créer dossier</strong>
                 <p>Historique médical complet</p>
               </div>
-            </a>
+            </Link>
 
             <Link to="/dashboard/medecinsList/nouveau" className="action-item">
               <span className="action-icon icon-bg-green">

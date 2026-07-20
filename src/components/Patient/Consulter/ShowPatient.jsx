@@ -9,6 +9,7 @@ function ShowPatient() {
   const navigate = useNavigate();
 
   const [patient, setPatient] = useState();
+  const user = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
     api
@@ -29,8 +30,19 @@ function ShowPatient() {
   return (
     <div className="dashboard-layout">
       <Sidebar />
-
-      <div className=" container mt-5">
+       <main className="dashboard-main">
+          <header className="dashboard-topbar">
+          <h1 className="dashboard-title">Patient</h1>
+          <div className="dashboard-profile">
+            <div className="profile-text">
+              
+              <strong>{user?.username}</strong>
+              <span>{user?.role}</span>
+            </div>
+        
+          </div>
+        </header>
+        <div className=" container mt-5">
         <div>
           <span><strong>Nom:</strong>{patient.username}</span>
         </div>
@@ -50,6 +62,8 @@ function ShowPatient() {
         <Link to="/dashboard/patients">Retour</Link>
 
       </div>
+       </main>
+      
     </div>
   );
 }
