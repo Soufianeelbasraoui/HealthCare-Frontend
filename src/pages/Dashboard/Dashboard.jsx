@@ -54,7 +54,7 @@ function Dashboard() {
           </div>
         </header>
 
-        {/* ===== CARTES STATS ===== */}
+      
         <section className="stats-grid">
           <div className="stat-card stat-border-blue">
             <div className="stat-card-text">
@@ -96,8 +96,6 @@ function Dashboard() {
             </div>
           </div>
         </section>
-
-        {/* ===== RENDEZ-VOUS + ACTIONS ===== */}
         <section className="dashboard-content-grid">
           <div className="rdv-panel">
             <div className="panel-header">
