@@ -10,7 +10,6 @@ function NotFound() {
   return (
     <div className="not-found-wrapper">
       <div className="card shadow-lg not-found-card p-4 p-md-5 text-center">
-        {/* Icône d'avertissement animée */}
         <div className="not-found-icon-wrapper">
           <FaExclamationTriangle />
         </div>

@@ -22,6 +22,9 @@ import AjouterRdv from './components/Rendez-vous/AjouterRdv/AjouterRdv'
 import ModifierRdv from './components/Rendez-vous/ModifierRdv/ModifierRdv'
 import Unauthorized from './pages/Unauthorized/Unauthorized'
 import NotFound from './pages/NotFound/NotFound'
+import ConsulterDossier from './components/DossierMedical/ConsulterDossier/ConsulterDossier'
+import ListeDossiers from './components/DossierMedical/ListeDossiers/ListeDossiers'
+
 
 function PublicLayout() {
   return (
@@ -62,6 +65,8 @@ function App() {
         <Route path='/dashboard/rendezVous' element={<ProtectedRoute roles={['ADMIN','MEDECIN','PATIENT']}><RendezVous/></ProtectedRoute>}/>
         <Route path='/dashboard/rendezVous/nouveau' element={<ProtectedRoute roles={['ADMIN']}><AjouterRdv/></ProtectedRoute>}/>
         <Route path='/dashboard/rendezVous/modifier/:id' element={<ProtectedRoute roles={["ADMIN"]}><ModifierRdv/></ProtectedRoute>}/>
+        <Route path="/dashboard/dossiers" element={<ProtectedRoute roles={['ADMIN']}><ListeDossiers/></ProtectedRoute>} />
+        <Route path='/dashboard/dossiers/ConsulterDossier/:id' element={<ProtectedRoute roles={["ADMIN"]}><ConsulterDossier/></ProtectedRoute>}/>
       </Routes>
     </BrowserRouter>
   )
