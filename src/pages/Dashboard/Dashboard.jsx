@@ -26,13 +26,12 @@ function Dashboard() {
    
     api.get("/api/patient?page=0&size=1").then((res) => {
       setNbPatients(res.data.totalElements);
-      console.log(res.data)
     });
 
 
     api.get("/api/medecin?page=0&size=1").then((res) => {
       setNbMedecins(res.data.totalElements);
-      console.log(res.data)
+      
     });
 
   
@@ -41,6 +40,11 @@ function Dashboard() {
       setNbRendezVous(res.data.totalElements || res.data.content?.length || 0);
       console.log(res.data)
     });
+
+    api.get("/api/dossier/all").then((res)=>{
+      console.log(res.data)
+      setDossier(res.data)
+    })
   }, []);
 
   return (
@@ -60,7 +64,7 @@ function Dashboard() {
           </div>
         </header>
 
-        {/* ===== CARTES STATS ===== */}
+      
         <section className="stats-grid">
           <div className="stat-card stat-border-blue">
             <div className="stat-card-text">
@@ -95,7 +99,7 @@ function Dashboard() {
           <div className="stat-card stat-border-navy">
             <div className="stat-card-text">
               <span>Dossiers</span>
-              <strong>—</strong>
+              <strong>{dossier.length}</strong>
             </div>
             <div className="stat-icon icon-bg-navy">
               <FaFolderOpen />

@@ -20,7 +20,7 @@ function PatientList() {
     api.get("/api/patient?size=50").then((res) => {
       setPatients(res.data.content);
   });
-  }, []);
+  },[]);
 
   const handleSearch = () => {
     api.get("/api/patient/search?nom=" + recherche).then((res) => {
