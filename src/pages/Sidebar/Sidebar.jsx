@@ -8,12 +8,13 @@ import {
   FaSignOutAlt,
 } from "react-icons/fa";
 import "./Sidebar.css";
+import { logout } from "../../services/authService";
 
 function Sidebar() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    logout();
     navigate("/login");
   };
 
@@ -40,8 +41,8 @@ function Sidebar() {
           <FaCalendarAlt className="sidebar-icon" /> Rendez-vous
         </NavLink>
         <NavLink to="/dashboard/dossiers" className={linkClass}>
-          <FaFolderOpen className="sidebar-icon" /> Dossiers Médicaux
-        </NavLink>
+         <FaFolderOpen className="sidebar-icon" /> Dossiers Médicaux
+         </NavLink>
       </nav>
 
       <button className="sidebar-logout" onClick={handleLogout}>

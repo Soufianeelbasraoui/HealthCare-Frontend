@@ -1,5 +1,5 @@
 
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes, Outlet } from 'react-router-dom'
 import './App.css'
 import Home from './pages/Home/Home'
 import About from './pages/About/About'
@@ -20,37 +20,54 @@ import ConsulterMedecin from './components/Medecien/ConsulterMedecin/ConsulterMe
 import RendezVous from './components/Rendez-vous/Rendez-vous'
 import AjouterRdv from './components/Rendez-vous/AjouterRdv/AjouterRdv'
 import ModifierRdv from './components/Rendez-vous/ModifierRdv/ModifierRdv'
+import Unauthorized from './pages/Unauthorized/Unauthorized'
+import NotFound from './pages/NotFound/NotFound'
+import ConsulterDossier from './components/DossierMedical/ConsulterDossier/ConsulterDossier'
+import ListeDossiers from './components/DossierMedical/ListeDossiers/ListeDossiers'
 
 
+function PublicLayout() {
+  return (
+    <>
+      <Header />
+      <Outlet />
+      <Footer />
+    </>
+  );
+}
 
 function App() {
-
   return (
     <BrowserRouter>
-      <Header />
       <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/Register' element={<Register />} />
-        <Route path='/Login' element={<Login />} />
+       
+        <Route element={<PublicLayout />}>
+          <Route path='/' element={<Home />} />
+          <Route path='/about' element={<About />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='*' element={<NotFound />} />
+          <Route path='/unauthorized' element={<Unauthorized/>}/>
+        </Route>
 
         
-        <Route path='/dashboard' element={<ProtectedRoute><Dashboard /></ProtectedRoute>  } />
-        <Route path='/dashboard/patients' element={<ProtectedRoute><PatientList /></ProtectedRoute> } />
-        <Route path="/dashboard/patients/nouveau" element={<ProtectedRoute><AjouterPatient /></ProtectedRoute>} />
-        <Route path="/dashboard/patients/modifier/:id" element={<ProtectedRoute><ModifierPatient /></ProtectedRoute>}/>
-        <Route path="/dashboard/patients/ShowPatinet/:id" element={<ProtectedRoute><ShowPatinet/></ProtectedRoute>}/>
+        <Route path='/dashboard' element={<ProtectedRoute roles={["ADMIN"]}><Dashboard /></ProtectedRoute>  } />
+        <Route path='/dashboard/patients' element={<ProtectedRoute roles={["ADMIN"]}><PatientList /></ProtectedRoute> } />
+        <Route path="/dashboard/patients/nouveau" element={<ProtectedRoute roles={["ADMIN"]}><AjouterPatient /></ProtectedRoute>} />
+        <Route path="/dashboard/patients/modifier/:id" element={<ProtectedRoute roles={["ADMIN","PATIENT"]}><ModifierPatient /></ProtectedRoute>}/>
+        <Route path="/dashboard/patients/ShowPatinet/:id" element={<ProtectedRoute roles={["ADMIN","PATIENT"]}><ShowPatinet/></ProtectedRoute>}/>
 
-        <Route path='/dashboard/medecinsList' element={<Medecins/>}/>
-        <Route path='/dashboard/medecinsList/nouveau' element={<AjouterMedecin/>}/>
-        <Route path='/dashboard/medecinsList/modifier/:id' element={<ModifierMedecin/>}/>
-        <Route path='/dashboard/medecinsList/consulterMedecin/:id' element={<ConsulterMedecin/>}/>
+        <Route path='/dashboard/medecinsList' element={<ProtectedRoute roles={["ADMIN"]}><Medecins/></ProtectedRoute>}/>
+        <Route path='/dashboard/medecinsList/nouveau' element={<ProtectedRoute roles={["ADMIN"]}><AjouterMedecin/></ProtectedRoute>}/>
+        <Route path='/dashboard/medecinsList/modifier/:id' element={<ProtectedRoute roles={["ADMIN"]}><ModifierMedecin/></ProtectedRoute>}/>
+        <Route path='/dashboard/medecinsList/consulterMedecin/:id' element={<ProtectedRoute roles={["ADMIN"]}><ConsulterMedecin/></ProtectedRoute>}/>
 
-        <Route path='/dashboard/rendezVous' element={<RendezVous/>}/>
-        <Route path='/dashboard/rendezVous/nouveau' element={<AjouterRdv/>}/>
-        <Route path='/dashboard/rendezVous/modifier/:id' element={<ModifierRdv/>}/>
+        <Route path='/dashboard/rendezVous' element={<ProtectedRoute roles={['ADMIN','MEDECIN','PATIENT']}><RendezVous/></ProtectedRoute>}/>
+        <Route path='/dashboard/rendezVous/nouveau' element={<ProtectedRoute roles={['ADMIN']}><AjouterRdv/></ProtectedRoute>}/>
+        <Route path='/dashboard/rendezVous/modifier/:id' element={<ProtectedRoute roles={["ADMIN"]}><ModifierRdv/></ProtectedRoute>}/>
+        <Route path="/dashboard/dossiers" element={<ProtectedRoute roles={['ADMIN',"MEDECIN"]}><ListeDossiers/></ProtectedRoute>} />
+        <Route path='/dashboard/dossiers/ConsulterDossier/:id' element={<ProtectedRoute roles={["ADMIN","MEDECIN"]}><ConsulterDossier/></ProtectedRoute>}/>
       </Routes>
-      <Footer/>
     </BrowserRouter>
   )
 }

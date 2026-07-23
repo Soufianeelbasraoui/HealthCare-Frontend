@@ -4,11 +4,17 @@ import api from "../../services/api";
 import Sidebar from "../../pages/Sidebar/Sidebar";
 import "./PatientList.css";
 import { Link, useNavigate } from "react-router-dom";
+import { getUser } from "../../services/authService";
+
 
 function PatientList() {
   const [patients, setPatients] = useState([]);
   const [recherche, setRecherche] = useState("");
   const navigate =useNavigate();
+  
+  const user=JSON.parse(localStorage.getItem("user"));
+  console.log(user)
+  
 
   useEffect(() => {
     api.get("/api/patient?size=50").then((res) => {
@@ -24,9 +30,13 @@ function PatientList() {
  const handleShow = (id) => {
     navigate(`/dashboard/patients/ShowPatinet/${id}`);
   };
-  const handleDelete = (id) => {
-     api.delete("/api/patient/" + id);
-     setPatients(patients.filter((item) => item.id !== id));
+  const handleDelete = async (id) => {
+    try {
+      await api.delete("/api/patient/" + id);
+      setPatients(patients.filter((item) => item.id !== id));
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -38,17 +48,18 @@ function PatientList() {
           <h1 className="dashboard-title">Patients</h1>
           <div className="dashboard-profile">
             <div className="profile-text">
-              <strong></strong>
-              <span></span>
+              <strong>{user?.username}</strong>
+              <span>{user?.role}</span>
             </div>
+           
           </div>
         </header>
 
         <div className="patients-header">
           <h2>Liste des Patients</h2>
-          <button className="btn-ajouter">
-            <FaPlus /> <Link to="/dashboard/patients/nouveau" >Ajouter patient</Link>
-          </button>
+          <Link to="/dashboard/patients/nouveau" className="btn-ajouter">
+            <FaPlus /> Ajouter patient
+          </Link>
         </div>
 
         <div className="search-bar">
@@ -88,12 +99,9 @@ function PatientList() {
                   <button className="icon-btn icon-show" onClick={() => handleShow(item.id)}>
                    <FaEye />
                   </button>
-                    <button className="icon-btn icon-edit">
-                      <Link  to={`/dashboard/patients/modifier/${item.id}`}>
-                            <FaEdit />
-                      </Link>
-                     
-                    </button>
+                    <Link to={`/dashboard/patients/modifier/${item.id}`} className="icon-btn icon-edit" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <FaEdit />
+                    </Link>
                     <button
                       className="icon-btn icon-delete"
                       onClick={() => handleDelete(item.id)}

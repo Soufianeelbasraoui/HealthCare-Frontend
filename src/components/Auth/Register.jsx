@@ -1,8 +1,10 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate, Link } from "react-router-dom";
 import * as yup from "yup";
 import api from "../../services/api";
+import { isAuthenticated } from "../../services/authService";
 import "./Golobal.css";
 
 const schema = yup.object({
@@ -14,6 +16,12 @@ const schema = yup.object({
 
 function Register() {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuthenticated()) {
+      navigate("/dashboard");
+    }
+  }, [navigate]);
 
   const {
     register,
@@ -27,8 +35,8 @@ function Register() {
     try {
       await api.post("/auth/register", data);
 
-      alert("Compte créé avec succès");
-      navigate("/dashboard");
+      alert("Compte créé avec succès. Veuillez vous connecter.");
+      navigate("/login");
     } catch (error) {
       console.log(error);
       alert("Erreur d'inscription");

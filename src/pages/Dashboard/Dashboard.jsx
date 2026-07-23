@@ -13,12 +13,15 @@ import Sidebar from "../Sidebar/Sidebar";
 import "./Dashboard.css";
 import { Link } from "react-router-dom";
 
+
 function Dashboard() {
   const [nbPatients, setNbPatients] = useState(0);
   const [nbMedecins, setNbMedecins] = useState(0);
+  const [nbRendezVous, setNbRendezVous] = useState(0);
   const [rendezVous, setRendezVous] = useState([]);
-  const[dossier,setDossier]=useState(0);
-
+  const user = JSON.parse(localStorage.getItem("user"));
+  console.log(user)
+ 
   useEffect(() => {
    
     api.get("/api/patient?page=0&size=1").then((res) => {
@@ -34,7 +37,8 @@ function Dashboard() {
   
     api.get("/api/rendezVous?page=0&size=5").then((res) => {
       setRendezVous(res.data.content);
-      
+      setNbRendezVous(res.data.totalElements || res.data.content?.length || 0);
+      console.log(res.data)
     });
 
     api.get("/api/dossier/all").then((res)=>{
@@ -52,10 +56,11 @@ function Dashboard() {
           <h1 className="dashboard-title">Tableau de bord</h1>
           <div className="dashboard-profile">
             <div className="profile-text">
-              <strong></strong>
-              <span></span>
+              
+              <strong>{user?.username}</strong>
+              <span>{user?.role}</span>
             </div>
-          
+        
           </div>
         </header>
 
@@ -84,7 +89,7 @@ function Dashboard() {
           <div className="stat-card stat-border-orange">
             <div className="stat-card-text">
               <span>RDV aujourd'hui</span>
-              <strong>{rendezVous.length}</strong>
+              <strong>{nbRendezVous}</strong>
             </div>
             <div className="stat-icon icon-bg-orange">
               <FaCalendarAlt />
@@ -101,13 +106,14 @@ function Dashboard() {
             </div>
           </div>
         </section>
+
         <section className="dashboard-content-grid">
           <div className="rdv-panel">
             <div className="panel-header">
               <h2>Derniers Rendez-vous</h2>
-              <a href="/dashboard/rendez-vous" className="panel-link">
+              <Link to="/dashboard/rendezVous" className="panel-link">
                 Voir tout
-              </a>
+              </Link>
             </div>
 
             <table className="rdv-table">
@@ -159,7 +165,7 @@ function Dashboard() {
               </div>
             </Link>
 
-            <a href="/dashboard/dossiers/nouveau" className="action-item">
+            <Link to="/dashboard/dossiers/nouveau" className="action-item">
               <span className="action-icon icon-bg-navy">
                 <FaFileMedicalAlt />
               </span>
@@ -167,7 +173,7 @@ function Dashboard() {
                 <strong>Créer dossier</strong>
                 <p>Historique médical complet</p>
               </div>
-            </a>
+            </Link>
 
             <Link to="/dashboard/medecinsList/nouveau" className="action-item">
               <span className="action-icon icon-bg-green">
