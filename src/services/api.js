@@ -34,6 +34,7 @@ api.interceptors.response.use(
            console.error("Non authentifié (401) — session supprimée.");
            localStorage.removeItem("token");
            localStorage.removeItem("user");
+           
            window.location.href="/login";
             break;
         case 403:

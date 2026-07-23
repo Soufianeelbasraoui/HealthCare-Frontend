@@ -12,7 +12,7 @@ import api from "../../services/api";
 import Sidebar from "../Sidebar/Sidebar";
 import "./Dashboard.css";
 import { Link } from "react-router-dom";
-import { getUser } from "../../services/authService";
+
 
 function Dashboard() {
   const [nbPatients, setNbPatients] = useState(0);
@@ -20,6 +20,7 @@ function Dashboard() {
   const [nbRendezVous, setNbRendezVous] = useState(0);
   const [rendezVous, setRendezVous] = useState([]);
   const user = JSON.parse(localStorage.getItem("user"));
+  console.log(user)
  
   useEffect(() => {
    

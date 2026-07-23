@@ -65,8 +65,8 @@ function App() {
         <Route path='/dashboard/rendezVous' element={<ProtectedRoute roles={['ADMIN','MEDECIN','PATIENT']}><RendezVous/></ProtectedRoute>}/>
         <Route path='/dashboard/rendezVous/nouveau' element={<ProtectedRoute roles={['ADMIN']}><AjouterRdv/></ProtectedRoute>}/>
         <Route path='/dashboard/rendezVous/modifier/:id' element={<ProtectedRoute roles={["ADMIN"]}><ModifierRdv/></ProtectedRoute>}/>
-        <Route path="/dashboard/dossiers" element={<ProtectedRoute roles={['ADMIN']}><ListeDossiers/></ProtectedRoute>} />
-        <Route path='/dashboard/dossiers/ConsulterDossier/:id' element={<ProtectedRoute roles={["ADMIN"]}><ConsulterDossier/></ProtectedRoute>}/>
+        <Route path="/dashboard/dossiers" element={<ProtectedRoute roles={['ADMIN',"MEDECIN"]}><ListeDossiers/></ProtectedRoute>} />
+        <Route path='/dashboard/dossiers/ConsulterDossier/:id' element={<ProtectedRoute roles={["ADMIN","MEDECIN"]}><ConsulterDossier/></ProtectedRoute>}/>
       </Routes>
     </BrowserRouter>
   )
