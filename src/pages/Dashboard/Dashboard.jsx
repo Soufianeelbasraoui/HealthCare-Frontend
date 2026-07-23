@@ -17,25 +17,30 @@ function Dashboard() {
   const [nbPatients, setNbPatients] = useState(0);
   const [nbMedecins, setNbMedecins] = useState(0);
   const [rendezVous, setRendezVous] = useState([]);
+  const[dossier,setDossier]=useState(0);
 
   useEffect(() => {
    
     api.get("/api/patient?page=0&size=1").then((res) => {
       setNbPatients(res.data.totalElements);
-      console.log(res.data)
     });
 
 
     api.get("/api/medecin?page=0&size=1").then((res) => {
       setNbMedecins(res.data.totalElements);
-      console.log(res.data)
+      
     });
 
   
     api.get("/api/rendezVous?page=0&size=5").then((res) => {
       setRendezVous(res.data.content);
-      console.log(res.data)
+      
     });
+
+    api.get("/api/dossier/all").then((res)=>{
+      console.log(res.data)
+      setDossier(res.data)
+    })
   }, []);
 
   return (
@@ -89,7 +94,7 @@ function Dashboard() {
           <div className="stat-card stat-border-navy">
             <div className="stat-card-text">
               <span>Dossiers</span>
-              <strong>—</strong>
+              <strong>{dossier.length}</strong>
             </div>
             <div className="stat-icon icon-bg-navy">
               <FaFolderOpen />
