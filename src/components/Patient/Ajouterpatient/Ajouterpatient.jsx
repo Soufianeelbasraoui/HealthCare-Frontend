@@ -34,7 +34,7 @@ function AjouterPatient() {
       alert("Patient ajouté avec succès");
       navigate("/dashboard/patients");
     } catch (error) {
-      console.log(error.response?.data);
+      console.log(error.response.data);
       alert("Erreur lors de l'ajout");
     }
   };
