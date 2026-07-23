@@ -38,10 +38,9 @@ function PatientList() {
           <h1 className="dashboard-title">Patients</h1>
           <div className="dashboard-profile">
             <div className="profile-text">
-              <strong>Dr. Jean Dupont</strong>
-              <span>CARDIOLOGUE</span>
+              <strong></strong>
+              <span></span>
             </div>
-            <div className="profile-avatar" />
           </div>
         </header>
 

@@ -47,10 +47,10 @@ function Dashboard() {
           <h1 className="dashboard-title">Tableau de bord</h1>
           <div className="dashboard-profile">
             <div className="profile-text">
-              <strong>Dr. Jean Dupont</strong>
-              <span>ADMINISTRATEUR</span>
+              <strong></strong>
+              <span></span>
             </div>
-            <div className="profile-avatar" />
+          
           </div>
         </header>
 
